@@ -1,7 +1,6 @@
 import streamlit as st
 import sqlite3
 from datetime import datetime
-import qrcode
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -65,19 +64,6 @@ def admin_login(username, password):
 def delete_donation(donation_id):
     c.execute('DELETE FROM donations WHERE id = ?', (donation_id,))
     conn.commit()
-
-# Fungsi untuk membuat QrCode dan menampilkan gambar QrCode
-def generate_qr_code(data):
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data(data)
-    qr.make(fit=True)
-    img = qr.make_image(fill_color="black", back_color="white")
-    return img
 
 # Halaman utama
 def home():
@@ -159,13 +145,10 @@ def donor_page():
     payment_options = ["DANA", "GOPAY"]
     payment_method = st.selectbox("Pilih Metode Pembayaran", payment_options)
 
-    # Jika metode pembayaran Qris dipilih, tampilkan gambar QrCode dan informasi
+    # Tampilkan gambar sesuai metode pembayaran
     if payment_method == "GOPAY":
-        qr_data = "08517344166"  # Nomor untuk Qris
         st.image("2.jpg", width=300)
         st.info("Silakan transfer menggunakan metode GOPAY (0851-73-444-166) .")
-
-    # Jika metode pembayaran Dana dipilih, tampilkan nomor Dana dan informasi
     elif payment_method == "DANA":
         st.image("1.jpg", width=300)
         st.info("Silakan transfer menggunakan metode DANA (0851-73-444-166) .")
