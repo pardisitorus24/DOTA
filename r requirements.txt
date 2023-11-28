@@ -1,11 +1,8 @@
+streamlit==1.28.2
 sqlite3
-datetime
-matplotlib==3.4.3
-Image
-streamlit==0.89.0
-pandas==1.3.3
-streamlit==0.90.0
-matplotlib==3.4.3
-pandas==1.3.3
-seaborn==0.11.2
-Pillow==8.4.0
+datetime==5.3
+qrcode==7.4.2
+pandas==2.1.1 
+seaborn==0.13.0
+Image== 1.5.33
+matplotlib==3.8.0
